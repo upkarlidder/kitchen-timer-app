@@ -7,8 +7,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
-import dev.riggaroo.kitchentimer.database.KitchenTimerDatabase
-import dev.riggaroo.kitchentimer.database.TimerDao
+import dev.riggaroo.kitchentimer.data.database.KitchenTimerDatabase
+import dev.riggaroo.kitchentimer.data.database.TimerDao
 import javax.inject.Singleton
 
 @Module

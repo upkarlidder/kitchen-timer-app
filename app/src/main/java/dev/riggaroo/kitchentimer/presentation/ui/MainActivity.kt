@@ -1,26 +1,18 @@
-package dev.riggaroo.kitchentimer
+package dev.riggaroo.kitchentimer.presentation.ui
 
 import android.os.Bundle
-import androidx.annotation.Px
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Canvas
-import androidx.compose.foundation.Text
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.platform.setContent
-import androidx.compose.ui.unit.dp
-import androidx.core.graphics.toColorInt
 import androidx.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
-import dev.riggaroo.kitchentimer.ui.*
+import dev.riggaroo.kitchentimer.presentation.ui.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

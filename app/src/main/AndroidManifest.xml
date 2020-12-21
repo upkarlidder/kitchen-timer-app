@@ -11,7 +11,7 @@
         android:name=".TimerApplication"
         android:theme="@style/Theme.KitchenTimer">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.ui.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.KitchenTimer.NoActionBar">
             <intent-filter>

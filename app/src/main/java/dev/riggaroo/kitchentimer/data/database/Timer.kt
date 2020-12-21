@@ -1,16 +1,16 @@
-package dev.riggaroo.kitchentimer.database
+package dev.riggaroo.kitchentimer.data.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import dev.riggaroo.kitchentimer.database.Timer.Companion.TABLE_NAME
+import dev.riggaroo.kitchentimer.data.database.Timer.Companion.TABLE_NAME
 import java.time.ZonedDateTime
 
 @Entity(tableName = TABLE_NAME)
 data class Timer(
-    @PrimaryKey
-    val id: Int,
-    val durationSeconds: Int,
-    val name: String,
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val durationSeconds: Long,
+    val name: String? = null,
     val lastUsedTime: ZonedDateTime) {
 
     companion object {

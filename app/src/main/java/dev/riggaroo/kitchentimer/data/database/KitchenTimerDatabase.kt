@@ -1,4 +1,4 @@
-package dev.riggaroo.kitchentimer.database
+package dev.riggaroo.kitchentimer.data.database
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
