@@ -9,14 +9,12 @@ import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dev.riggaroo.kitchentimer.data.database.KitchenTimerDatabase
 import dev.riggaroo.kitchentimer.data.database.TimerDao
-import javax.inject.Singleton
 
 @Module
 @InstallIn(ActivityComponent::class)
 object AppModule {
 
     @Provides
-    @Singleton
     fun provideTimerDatabase(
         @ApplicationContext context: Context
     ): KitchenTimerDatabase {
