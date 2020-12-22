@@ -1,13 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     ext {
-        compose_version = '1.0.0-alpha04'
+        compose_version = '1.0.0-alpha09'
         mobius_version = '1.5.3'
         room_version = '2.2.6'
         room_coroutines_version = '2.1.0-alpha04'
         hilt_version = "2.28-alpha"
     }
-    ext.kotlin_version = "1.4.10"
+    ext.kotlin_version = "1.4.21"
     repositories {
         google()
         jcenter()

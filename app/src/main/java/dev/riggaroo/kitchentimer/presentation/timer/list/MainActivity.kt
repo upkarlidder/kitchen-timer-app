@@ -17,7 +17,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.platform.setContent
 import androidx.compose.ui.unit.dp
-import androidx.ui.tooling.preview.Preview
 import dagger.hilt.android.AndroidEntryPoint
 import dev.riggaroo.kitchentimer.presentation.mobius.MobiusView
 import dev.riggaroo.kitchentimer.presentation.timer.list.viewmodel.TimersViewModel
@@ -72,6 +71,7 @@ fun BackgroundGradient(modifier: Modifier) {
     }
 }
 
+/*
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
@@ -80,3 +80,4 @@ fun DefaultPreview() {
         ListTimersScreen(Modifier.fillMaxSize(), {})
     }
 }
+*/
