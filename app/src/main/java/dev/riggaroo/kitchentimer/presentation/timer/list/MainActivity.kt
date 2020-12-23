@@ -46,7 +46,6 @@ class MainActivity : AppCompatActivity(), MobiusView<TimersModel, TimersViewEffe
         super.onCreate(savedInstanceState)
         setContent {
             KitchenTimerTheme {
-                // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
                     ListTimersScreen(model = timerViewModel.models, modifier = Modifier.fillMaxSize()) {
                         timerViewModel.dispatchEvent(TimersEvent.AddTimer(Duration.ofMinutes(4), "Test Timer"))
@@ -69,9 +68,9 @@ fun ListTimersScreen(model: LiveData<TimersModel>, modifier: Modifier, addTimerC
         AddTimerButton(modifier = Modifier.align(Alignment.BottomCenter)
                 .padding(16.dp), addTimerClicked = addTimerClicked)
         val state : TimersModel? by model.observeAsState()
-        if (state != null) {
+        state?.let { model ->
             LazyColumn(Modifier.padding(8.dp)) {
-                items(state!!.timers) {
+                items(model.timers) {
                     ListItemTimer(it)
                 }
             }
