@@ -34,12 +34,15 @@ import dev.riggaroo.kitchentimer.presentation.timer.list.viewmodel.TimersEvent
 import dev.riggaroo.kitchentimer.presentation.timer.list.viewmodel.TimersModel
 import dev.riggaroo.kitchentimer.presentation.timer.list.viewmodel.TimersViewEffect
 import dev.riggaroo.kitchentimer.presentation.timer.list.viewmodel.TimersViewModel
+import dev.riggaroo.kitchentimer.presentation.timer.ui.AddTimerButton
+import dev.riggaroo.kitchentimer.presentation.timer.ui.BackgroundGradient
+import dev.riggaroo.kitchentimer.presentation.timer.ui.ListItemTimer
 import dev.riggaroo.kitchentimer.presentation.ui.*
 import java.time.Duration
 import kotlin.random.Random
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity(), MobiusView<TimersModel, TimersViewEffect> {
+class TimersActivity : AppCompatActivity(), MobiusView<TimersModel, TimersViewEffect> {
 
     private val timerViewModel : TimersViewModel by viewModels()
 
@@ -71,7 +74,7 @@ fun ListTimersScreen(model: LiveData<TimersModel>, modifier: Modifier, addTimerC
                 .padding(16.dp), addTimerClicked = addTimerClicked)
         val state : TimersModel? by model.observeAsState()
         state?.let { model ->
-            LazyColumn(Modifier.padding(8.dp)) {
+            LazyColumn(Modifier.fillMaxWidth().padding(8.dp)) {
                 items(model.timers) {
                     ListItemTimer(it)
                 }
@@ -80,33 +83,6 @@ fun ListTimersScreen(model: LiveData<TimersModel>, modifier: Modifier, addTimerC
     }
 }
 
-@Composable
-fun ListItemTimer(timer: Timer) {
-    Column {
-        Text(text = timer.name ?: "5 min timer")
-        Text(text = timer.durationSeconds.toString())
-    }
-}
-
-@Composable
-fun AddTimerButton(modifier: Modifier, addTimerClicked: () -> Unit) {
-    ExtendedFloatingActionButton(modifier = modifier,
-            text = {
-                Text(text = "Add Timer")
-            }, onClick = {
-        addTimerClicked()
-    })
-}
-
-@Composable
-fun BackgroundGradient(modifier: Modifier) {
-    Canvas(modifier = modifier) {
-        val brushBackground = Brush.verticalGradient(
-                listOf(orange, peach, lightPurple), 0f, size.height.toDp().toPx(), TileMode.Mirror
-        )
-        drawRect(brushBackground)
-    }
-}
 
 /*@Preview(showBackground = true)
 @Composable
