@@ -1,6 +1,6 @@
-# Kitchen Timer App
+# 🚧 Kitchen Timer App  - Work in progress 🚧
 
-A Work-in-Progress Android app built with Modern Android Components:
+A very much Work-in-Progress Android app built with Modern Android Components:
 
 - Kotlin
 - Jetpack Compose (I'm using this project as my learning playground)
