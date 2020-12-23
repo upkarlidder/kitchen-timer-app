@@ -9,6 +9,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.unit.dp
 import dev.riggaroo.kitchentimer.data.database.Timer
 import dev.riggaroo.kitchentimer.presentation.ext.getFormatted
@@ -16,11 +17,14 @@ import java.time.format.DateTimeFormatter
 
 
 @Composable
-fun ListItemTimer(timer: Timer) {
+fun ListItemTimer(timer: Timer,
+                  timerStarted: (Timer) -> Unit,
+                  timerStopped: (Timer) -> Unit,
+                  timerDeleted: (Timer)-> Unit) {
     Card(
-        modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+        modifier = Modifier.fillMaxWidth().padding(top = 8.dp, start = 16.dp, end = 16.dp, bottom = 8.dp),
         shape = RoundedCornerShape(12.dp),
-        backgroundColor = MaterialTheme.colors.surface,
+        backgroundColor = MaterialTheme.colors.surface
     ) {
         Column(modifier = Modifier.padding(16.dp)) {
             Text(text = timer.name ?: "5 min timer",
