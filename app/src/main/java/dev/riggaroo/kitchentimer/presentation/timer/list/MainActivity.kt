@@ -64,20 +64,18 @@ fun AddTimerButton(modifier: Modifier, addTimerClicked: () -> Unit) {
 @Composable
 fun BackgroundGradient(modifier: Modifier) {
     Canvas(modifier = modifier) {
-        val brushBackground = VerticalGradient(
+        val brushBackground = Brush.verticalGradient(
                 listOf(orange, peach, lightPurple), 0f, size.height.toDp().toPx(), TileMode.Mirror
         )
         drawRect(brushBackground)
     }
 }
 
-/*
-@Preview(showBackground = true)
+/*@Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
     KitchenTimerTheme {
 
         ListTimersScreen(Modifier.fillMaxSize(), {})
     }
-}
-*/
+}*/

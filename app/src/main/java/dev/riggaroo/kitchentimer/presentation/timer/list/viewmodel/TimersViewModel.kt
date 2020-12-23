@@ -1,19 +1,27 @@
 package dev.riggaroo.kitchentimer.presentation.timer.list.viewmodel
 
 import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.ViewModel
+import com.spotify.mobius.MobiusLoop
 import com.spotify.mobius.android.MobiusLoopViewModel
-import com.spotify.mobius.rx3.RxMobius
 import dev.riggaroo.kitchentimer.domain.usecase.TimersUseCase
+import com.spotify.mobius.runners.WorkRunner
+import com.spotify.mobius.rx2.RxMobius
+import dev.riggaroo.kitchentimer.presentation.mobius.ViewEffectConsumer
+import dev.riggaroo.kitchentimer.presentation.mobius.WorkRunnersConstants
+import javax.inject.Named
 
-class TimersViewModel @ViewModelInject constructor(private val timerUseCase: TimersUseCase)
-    : ViewModel() /*MobiusLoopViewModel<TimersModel, TimersEvent, TimersEffect, TimersViewEffect>(
-    modelToStartFrom = TimersModel(),
-    loopFactoryProvider = Function { consumer ->
+class TimersViewModel @ViewModelInject constructor(
+    private val timerUseCase: TimersUseCase,
+    @Named(WorkRunnersConstants.MAIN_THREAD_WORK_RUNNER) workRunner: WorkRunner
+) : MobiusLoopViewModel<TimersModel, TimersEvent, TimersEffect, TimersViewEffect> (
+    com.spotify.mobius.functions.Function<ViewEffectConsumer<TimersViewEffect>, MobiusLoop.Factory<TimersModel, TimersEvent, TimersEffect>> {
         val sideEffectHandler = TimerSideEffectHandler(timerUseCase)
         RxMobius.loop(
-            EditorExportModelUpdate(),
-            sideEffectHandler
+                TimersModelUpdate(),
+                sideEffectHandler
         )
-    }
-)*/
+    }, TimersModel(),
+        TimersInit(),
+        workRunner,
+        50
+)
