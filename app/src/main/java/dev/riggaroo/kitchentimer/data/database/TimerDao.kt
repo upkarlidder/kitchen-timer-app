@@ -3,13 +3,14 @@ package dev.riggaroo.kitchentimer.data.database
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import io.reactivex.Flowable
 
 @Dao
 interface TimerDao {
 
     @Query("select * from ${Timer.TABLE_NAME}")
-    suspend fun getTimers() : List<Timer>
+    fun getTimers() : Flowable<List<Timer>>
 
     @Insert
-    suspend fun insertTimer(timer: Timer)
+    fun insertTimer(timer: Timer): Long
 }

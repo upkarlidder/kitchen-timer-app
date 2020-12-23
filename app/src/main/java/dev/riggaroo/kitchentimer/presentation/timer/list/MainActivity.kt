@@ -36,6 +36,7 @@ import dev.riggaroo.kitchentimer.presentation.timer.list.viewmodel.TimersViewEff
 import dev.riggaroo.kitchentimer.presentation.timer.list.viewmodel.TimersViewModel
 import dev.riggaroo.kitchentimer.presentation.ui.*
 import java.time.Duration
+import kotlin.random.Random
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MobiusView<TimersModel, TimersViewEffect> {
@@ -48,12 +49,13 @@ class MainActivity : AppCompatActivity(), MobiusView<TimersModel, TimersViewEffe
             KitchenTimerTheme {
                 Surface(color = MaterialTheme.colors.background) {
                     ListTimersScreen(model = timerViewModel.models, modifier = Modifier.fillMaxSize()) {
-                        timerViewModel.dispatchEvent(TimersEvent.AddTimer(Duration.ofMinutes(4), "Test Timer"))
+                        timerViewModel.dispatchEvent(TimersEvent.AddTimer(Duration.ofMinutes(Random.nextLong(10)), "Test Timer"))
                     }
                 }
             }
         }
         subscribeToViewEffects(this, timerViewModel)
+        timerViewModel.dispatchEvent(TimersEvent.LoadTimers)
     }
 
     override fun handleViewEffect(viewEffect: TimersViewEffect) {

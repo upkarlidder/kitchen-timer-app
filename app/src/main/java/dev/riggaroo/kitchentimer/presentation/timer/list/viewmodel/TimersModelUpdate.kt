@@ -10,16 +10,23 @@ class TimersModelUpdate : Update<TimersModel, TimersEvent, TimersEffect > {
     override fun update(model: TimersModel, event: TimersEvent): Next<TimersModel, TimersEffect> {
         return when (event) {
             is TimersEvent.AddTimer -> {
-                // todo invoke db call instead
-                val runningList = model.timers.toMutableList()
-                val newTimer = Timer(0, event.duration.seconds, event.name, ZonedDateTime.now())
-                runningList.add(newTimer)
+                Next.dispatch(setOf(TimersEffect.AddTimer(event.duration, event.name)))
+            }
+            TimersEvent.TimerAdded -> {
+                // No need to trigger model update since TimersLoadedEvent will be triggered again.
+                Next.noChange()
+            }
+            is TimersEvent.LoadTimers -> {
+                Next.dispatch(setOf(TimersEffect.LoadTimers))
+            }
+            is TimersEvent.TimersLoadedEvent -> {
                 Next.next(model.copy(timerViewState = TimerViewState.LOADED,
-                        timers = runningList))
+                    timers = event.timers))
             }
             TimersEvent.StartTimer -> TODO()
             TimersEvent.StopTimer -> TODO()
             is TimersEvent.DeleteTimer -> TODO()
+
         }
     }
 
